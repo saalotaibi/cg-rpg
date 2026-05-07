@@ -1,0 +1,22 @@
+# Build artifacts
+*.o
+*.a
+*.so
+src/*.o
+bin/
+cozy-room
+cozy_room_rpg
+
+# Editor / IDE
+.vscode/
+.idea/
+.claude/
+.expect/
+.caude/
+*.swp
+*.swo
+.DS_Store
+
+# Local profile / save data (created by future onboarding feature)
+.cozy-room/
+profile.json

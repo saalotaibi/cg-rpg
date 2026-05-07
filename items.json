@@ -1,0 +1,172 @@
+{
+  "coordinate_space": {
+    "width": 448,
+    "height": 428,
+    "origin": "top-left",
+    "src_x": "left edge in source pixels",
+    "src_y": "top edge unless floor_anchor is true; then bottom edge",
+    "scale": "sprite source pixel multiplier before room scaling"
+  },
+  "items": [
+    {
+      "tex": "REWARD_PLANT_STAGE_4",
+      "name": "growing_plant",
+      "asset": "assets/textures/rewards/plant_stage_4.png",
+      "threshold": 0.2,
+      "src_x": 95.52,
+      "src_y": 124.46,
+      "scale": 0.5,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 95.52,
+        "top": 60.46,
+        "right": 143.52,
+        "bottom": 124.46
+      }
+    },
+    {
+      "tex": "REWARD_BED",
+      "name": "bed",
+      "asset": "assets/textures/rewards/bed.png",
+      "threshold": 0.1,
+      "src_x": 289.69,
+      "src_y": 151.03,
+      "scale": 0.91,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 289.69,
+        "top": 49.11,
+        "right": 391.61,
+        "bottom": 151.03
+      }
+    },
+    {
+      "tex": "REWARD_WALL_ART",
+      "name": "wall_art",
+      "asset": "assets/textures/rewards/wall_art.png",
+      "threshold": 0.3,
+      "src_x": 342.67,
+      "src_y": 8.76,
+      "scale": 0.7,
+      "floor_anchor": false,
+      "bounds": {
+        "left": 342.67,
+        "top": 8.76,
+        "right": 376.27,
+        "bottom": 64.76
+      }
+    },
+    {
+      "tex": "REWARD_FLOOR_LAMP",
+      "name": "floor_lamp",
+      "asset": "assets/textures/rewards/floor_lamp.png",
+      "threshold": 0.5,
+      "src_x": 353.22,
+      "src_y": 271.29,
+      "scale": 0.7,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 353.22,
+        "top": 181.69,
+        "right": 386.82,
+        "bottom": 271.29
+      }
+    },
+    {
+      "tex": "REWARD_RUG",
+      "name": "rug",
+      "asset": "assets/textures/rewards/rug.png",
+      "threshold": 0.7,
+      "src_x": 190.35,
+      "src_y": 194.25,
+      "scale": 0.72,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 190.35,
+        "top": 125.13,
+        "right": 259.47,
+        "bottom": 194.25
+      }
+    },
+    {
+      "tex": "REWARD_BOOKCASE",
+      "name": "bookcase",
+      "asset": "assets/textures/rewards/bookcase.png",
+      "threshold": 0.8,
+      "src_x": 287.62,
+      "src_y": 366.18,
+      "scale": 0.88,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 287.62,
+        "top": 239.46,
+        "right": 372.1,
+        "bottom": 366.18
+      }
+    },
+    {
+      "tex": "REWARD_STUDY_DESK",
+      "name": "study_desk",
+      "asset": "assets/textures/rewards/study_desk.png",
+      "threshold": 0.85,
+      "src_x": 92.25,
+      "src_y": 424.8,
+      "scale": 0.91,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 92.25,
+        "top": 337.44,
+        "right": 165.05,
+        "bottom": 424.8
+      }
+    },
+    {
+      "tex": "REWARD_ROUND_RUG",
+      "name": "round_rug",
+      "asset": "assets/textures/rewards/round_rug.png",
+      "threshold": 0.88,
+      "src_x": 214.83,
+      "src_y": 348.79,
+      "scale": 0.74,
+      "floor_anchor": false,
+      "bounds": {
+        "left": 214.83,
+        "top": 348.79,
+        "right": 262.19,
+        "bottom": 396.15
+      }
+    },
+    {
+      "tex": "REWARD_CHAIR",
+      "name": "chair",
+      "asset": "assets/textures/rewards/chair.png",
+      "threshold": 0.9,
+      "src_x": 155.28,
+      "src_y": 109.92,
+      "scale": 0.77,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 155.28,
+        "top": 36,
+        "right": 192.24,
+        "bottom": 109.92
+      }
+    },
+    {
+      "tex": "REWARD_POT",
+      "name": "pot",
+      "asset": "assets/textures/rewards/pot.png",
+      "threshold": 1,
+      "src_x": 357.98,
+      "src_y": 408,
+      "scale": 0.54,
+      "floor_anchor": true,
+      "bounds": {
+        "left": 357.98,
+        "top": 373.44,
+        "right": 383.9,
+        "bottom": 408
+      }
+    }
+  ]
+}
