@@ -18,9 +18,19 @@ GAME_OBJ    = $(GAME_SRC:.cpp=.o)
 
 GAME_BIN     = cozy-room
 
-.PHONY: all clean run
+.PHONY: all clean run install-deps
 
 all: $(GAME_BIN)
+
+install-deps:
+ifeq ($(UNAME_S),Darwin)
+	@command -v brew >/dev/null 2>&1 || { echo "Homebrew not found. Install from https://brew.sh"; exit 1; }
+	brew install pkg-config glew freeglut
+else
+	@echo "Linux: install GLEW, FreeGLUT, and OpenGL dev headers via your package manager."
+	@echo "  Debian/Ubuntu: sudo apt install build-essential libglew-dev freeglut3-dev"
+	@echo "  Arch:          sudo pacman -S base-devel glew freeglut"
+endif
 
 $(GAME_BIN): $(GAME_OBJ) src/main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
