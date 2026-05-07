@@ -5,8 +5,7 @@
 #include "texture.h"
 #include "textures.h"
 
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include "gl_compat.h"
 
 #include <cctype>
 #include <cmath>
@@ -54,7 +53,7 @@ void ensure_carousel_loaded() {
     for (int i = 0; i < ONB_NUM_CHARACTERS; i++) {
         if (!texture_load(&g_carousel_tex[i], CHARACTER_FILES[i])) {
             std::fprintf(stderr, "onboard: missing %s\n", CHARACTER_FILES[i]);
-            // Fall back to the main character.png so the slot isn't blank.
+            // Fall back to the main character texture so the slot isn't blank.
             g_carousel_tex[i] = g_tex.character;
         }
     }
@@ -569,24 +568,9 @@ const char* onboard_character_path(int index) {
 void onboard_apply_character(int index) {
     if (index < 0 || index >= ONB_NUM_CHARACTERS) index = 0;
     const char* src = CHARACTER_FILES[index];
-    const char* dst = "assets/textures/character.png";
 
-    // Plain binary copy. Cheaper than dragging in any PNG-encoder code.
-    FILE* in  = std::fopen(src, "rb");
-    FILE* out = std::fopen(dst, "wb");
-    if (in && out) {
-        unsigned char buf[8192];
-        size_t n;
-        while ((n = std::fread(buf, 1, sizeof(buf), in)) > 0) {
-            std::fwrite(buf, 1, n, out);
-        }
-    }
-    if (in)  std::fclose(in);
-    if (out) std::fclose(out);
-
-    // Reload the live texture so the running game sees the new sprite.
     Texture fresh{};
-    if (texture_load(&fresh, dst)) {
+    if (texture_load(&fresh, src)) {
         texture_free(&g_tex.character);
         g_tex.character = fresh;
     }

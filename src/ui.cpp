@@ -1,7 +1,6 @@
 #include "ui.h"
 #include "font.h"
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include "gl_compat.h"
 #include <cmath>
 
 static void quad(float x, float y, float w, float h) {

@@ -9,12 +9,17 @@
 // player profile saved to ~/.cozy-room/profile.json. A saved profile may
 // prefill state, but the wizard is always shown before play.
 
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include "gl_compat.h"
 
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+
+#ifdef __APPLE__
+#include <limits.h>
+#include <mach-o/dyld.h>
+#include <unistd.h>
+#endif
 
 #include "scene.h"
 #include "home.h"
@@ -40,6 +45,22 @@ static bool      g_have_profile = false;
 
 // Held-key flags. WASD + arrow keys map to the same direction bools.
 static bool key_w = false, key_a = false, key_s = false, key_d = false;
+
+static void chdir_to_executable_dir() {
+#ifdef __APPLE__
+    char path[PATH_MAX];
+    uint32_t size = sizeof(path);
+    if (_NSGetExecutablePath(path, &size) != 0) return;
+
+    char* slash = std::strrchr(path, '/');
+    if (!slash) return;
+    *slash = '\0';
+
+    if (chdir(path) != 0) {
+        std::fprintf(stderr, "WARNING: failed to switch to app directory: %s\n", path);
+    }
+#endif
+}
 
 static void trigger_item(ItemId id) {
     int idx = (int)id;
@@ -281,6 +302,8 @@ static void mouse(int button, int state, int x, int y) {
 }
 
 int main(int argc, char** argv) {
+    chdir_to_executable_dir();
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(win_w, win_h);

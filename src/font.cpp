@@ -1,6 +1,5 @@
 #include "font.h"
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include "gl_compat.h"
 #include <cctype>
 #include <cstdint>
 #include <cstring>

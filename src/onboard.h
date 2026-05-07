@@ -46,7 +46,6 @@ int onboard_character_count();
 // assets/textures/characters/. Index in [0, ONB_NUM_CHARACTERS).
 const char* onboard_character_path(int index);
 
-// Copy assets/textures/characters/<index>.png into
-// assets/textures/character.png and reload g_tex.character so the
-// rest of the game sees the new sprite immediately.
+// Reload g_tex.character from assets/textures/characters/<index>.png so the
+// rest of the game sees the selected sprite immediately.
 void onboard_apply_character(int index);

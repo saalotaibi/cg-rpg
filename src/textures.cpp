@@ -15,7 +15,7 @@ bool textures_load_all() {
     bool ok = true;
     ok &= load_one(&g_tex.home_layer1, "assets/textures/home/home_layer1.png");
     ok &= load_one(&g_tex.home_layer2, "assets/textures/home/home_layer2.png");
-    ok &= load_one(&g_tex.character,   "assets/textures/character.png");
+    ok &= load_one(&g_tex.character,   "assets/textures/characters/01.png");
     ok &= load_one(&g_tex.cat,         "assets/textures/cat.png");
     ok &= load_one(&g_tex.rewards[REWARD_PLANT_STAGE_1],
                    "assets/textures/rewards/plant_stage_1.png");

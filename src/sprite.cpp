@@ -1,6 +1,5 @@
 #include "sprite.h"
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include "gl_compat.h"
 
 // Note: stb_image is loaded with vertical flip = ON, so the texture's V=0 is at
 // the bottom of the image. We compensate so callers can pass top-left source coords.

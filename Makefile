@@ -1,6 +1,16 @@
-CXX = g++
-CXXFLAGS = -std=c++17 -Wall -O2
-LDFLAGS = -lGL -lGLU -lGLEW -lglut -lm
+CXX ?= g++
+PKG_CONFIG ?= pkg-config
+
+BASE_CXXFLAGS = -std=c++17 -Wall -O2
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Darwin)
+CXXFLAGS ?= $(shell $(PKG_CONFIG) --cflags glew 2>/dev/null) -DGL_SILENCE_DEPRECATION $(BASE_CXXFLAGS)
+LDFLAGS ?= $(shell $(PKG_CONFIG) --libs glew 2>/dev/null) -framework GLUT -framework OpenGL -lm
+else
+CXXFLAGS ?= $(BASE_CXXFLAGS)
+LDFLAGS ?= -lGL -lGLU -lGLEW -lglut -lm
+endif
 
 ENTRYPOINTS = src/main.cpp
 GAME_SRC    = $(filter-out $(ENTRYPOINTS), $(wildcard src/*.cpp))
