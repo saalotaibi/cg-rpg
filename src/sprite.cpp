@@ -3,6 +3,11 @@
 
 // Note: stb_image is loaded with vertical flip = ON, so the texture's V=0 is at
 // the bottom of the image. We compensate so callers can pass top-left source coords.
+//
+// Every sprite is positioned via glTranslatef and sized via glScalef applied to
+// a unit quad at (0,0)..(1,1). Using the modelview matrix here means the GL
+// transformation pipeline (translation + scaling) drives every textured draw
+// in the game rather than precomputing screen-space vertices.
 static void emit_quad(const Texture& tex,
                       float dx, float dy, float dw, float dh,
                       int sx, int sy, int sw, int sh) {
@@ -12,12 +17,19 @@ static void emit_quad(const Texture& tex,
     float v0 = 1.0f - (float)(sy + sh) / tex.h;
     float v1 = 1.0f - (float)sy / tex.h;
 
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(dx, dy, 0.0f);
+    glScalef(dw, dh, 1.0f);
+
     glBegin(GL_QUADS);
-    glTexCoord2f(u0, v0); glVertex2f(dx,      dy);
-    glTexCoord2f(u1, v0); glVertex2f(dx + dw, dy);
-    glTexCoord2f(u1, v1); glVertex2f(dx + dw, dy + dh);
-    glTexCoord2f(u0, v1); glVertex2f(dx,      dy + dh);
+    glTexCoord2f(u0, v0); glVertex2f(0.0f, 0.0f);
+    glTexCoord2f(u1, v0); glVertex2f(1.0f, 0.0f);
+    glTexCoord2f(u1, v1); glVertex2f(1.0f, 1.0f);
+    glTexCoord2f(u0, v1); glVertex2f(0.0f, 1.0f);
     glEnd();
+
+    glPopMatrix();
 }
 
 void sprite_draw(const Texture& tex,

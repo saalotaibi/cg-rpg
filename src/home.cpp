@@ -372,9 +372,24 @@ static void draw_cat(const Pet& pet, int home_x, int home_y, int home_h) {
     // bottom-center anchor works directly.
     float dx = feet_x - DRAW_W * 0.5f;
     float dy = feet_y;
+
+    // A small rotation around the cat's feet, driven by the walk phase, gives
+    // the pet a subtle wobble while it moves. This exercises glRotatef on the
+    // modelview stack on top of the translate/scale already applied in
+    // sprite_draw, so the GL transformation pipeline is doing the work.
+    float wobble_deg = std::sin(pet.walk_phase * 6.2831853f) * 4.0f;
+
+    glMatrixMode(GL_MODELVIEW);
+    glPushMatrix();
+    glTranslatef(feet_x, feet_y, 0.0f);
+    glRotatef(wobble_deg, 0.0f, 0.0f, 1.0f);
+    glTranslatef(-feet_x, -feet_y, 0.0f);
+
     sprite_draw(g_tex.cat,
                 dx, dy, DRAW_W, DRAW_H,
                 frame.sx, frame.sy, frame.sw, frame.sh);
+
+    glPopMatrix();
 }
 
 static void draw_living_sprites(const Player& p, const Pet& pet,
